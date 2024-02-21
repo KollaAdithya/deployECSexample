@@ -28,7 +28,7 @@ jobs:
     - name: Build, tag, and push image to Amazon ECR
       env:
         ECR_REGISTRY: 197732814171.dkr.ecr.us-east-1.amazonaws.com
-        ECR_REPOSITORY: v1331release/testlbws
+        ECR_REPOSITORY: nodejs-app
         IMAGE_TAG: tag1
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
@@ -40,7 +40,7 @@ jobs:
       with:
         task-definition: task-definition.json
         container-name: testlbws
-        image: 197732814171.dkr.ecr.us-east-1.amazonaws.com/v1331release/testlbws:tag1
+        image: 197732814171.dkr.ecr.us-east-1.amazonaws.com/nodejs-app:latest:tag1
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
@@ -48,3 +48,4 @@ jobs:
         cluster: wsh-test
         desired-count: 3
         task-definition: ${{ steps.task-def.outputs.task-definition }}
+        wait-for-service-stability: true
