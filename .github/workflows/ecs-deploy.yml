@@ -39,8 +39,8 @@ jobs:
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: task-definition.json
-        container-name: testlbws
-        image: 197732814171.dkr.ecr.us-east-1.amazonaws.com/nodejs-app:latest:tag1
+        container-name: nodejs-app
+        image: 197732814171.dkr.ecr.us-east-1.amazonaws.com/nodejs-app:tag1
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
