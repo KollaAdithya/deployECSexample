@@ -1,33 +1,69 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:197732814171:task-definition/nodejs-app-task-definition:1",
-       "containerDefinitions": [
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:197732814171:task-definition/v1331release-test-testlbws:1",
+    "containerDefinitions": [
         {
-            "name": "nodejs-app", 
-            "image": "1977328141714.dkr.ecr.us-east-1.amazonaws.com/nginx-static:latest",
-            "cpu": 256, 
-            "memory": 512, 
+            "name": "testlbws",
+            "image": "197732814171.dkr.ecr.us-east-1.amazonaws.com/v1331release/testlbws@sha256:53e164a83243031682b7372615cc2a1b647f8237bb1c12fb1f56f3f27d25d76f",
+            "cpu": 0,
+            "links": [],
             "portMappings": [
                 {
-                    "containerPort": 80, 
+                    "name": "target",
+                    "containerPort": 80,
                     "hostPort": 80,
                     "protocol": "tcp"
                 }
             ],
             "essential": true,
+            "entryPoint": [],
+            "command": [],
+            "environment": [
+                {
+                    "name": "COPILOT_LB_DNS",
+                    "value": "v1331r-Publi-S54WAf4HWEFA-607235705.us-east-1.elb.amazonaws.com"
+                },
+                {
+                    "name": "COPILOT_SERVICE_DISCOVERY_ENDPOINT",
+                    "value": "test.v1331release.local"
+                },
+                {
+                    "name": "COPILOT_APPLICATION_NAME",
+                    "value": "v1331release"
+                },
+                {
+                    "name": "COPILOT_SERVICE_NAME",
+                    "value": "testlbws"
+                },
+                {
+                    "name": "COPILOT_ENVIRONMENT_NAME",
+                    "value": "test"
+                }
+            ],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "secrets": [],
+            "dnsServers": [],
+            "dnsSearchDomains": [],
+            "extraHosts": [],
+            "dockerSecurityOptions": [],
+            "dockerLabels": {},
+            "ulimits": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-create-group": "true",
-                    "awslogs-group": "/ecs/nodejs-app", 
+                    "awslogs-group": "/copilot/v1331release-test-testlbws",
                     "awslogs-region": "us-east-1",
-                    "awslogs-stream-prefix": "ecs"
-                }
-            }
+                    "awslogs-stream-prefix": "copilot"
+                },
+                "secretOptions": []
+            },
+            "systemControls": []
         }
     ],
-    "family": "nodejs-app-task-definition",
-    "taskRoleArn": "arn:aws:iam::197732814171:role/ecsTaskExecutionRole",
-    "executionRoleArn": "arn:aws:iam::197732814171:role/ecsTaskExecutionRole",
+    "family": "v1331release-test-testlbws",
+    "taskRoleArn": "arn:aws:iam::197732814171:role/v1331release-test-testlbws-TaskRole-rEKwvnPOAcK3",
+    "executionRoleArn": "arn:aws:iam::197732814171:role/v1331release-test-testlbws-ExecutionRole-GszsnYwDswWh",
     "networkMode": "awsvpc",
     "revision": 1,
     "volumes": [],
@@ -46,6 +82,12 @@
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
         },
         {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
+        },
+        {
             "name": "com.amazonaws.ecs.capability.task-iam-role"
         },
         {
@@ -56,9 +98,6 @@
         },
         {
             "name": "ecs.capability.task-eni"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
         }
     ],
     "placementConstraints": [],
@@ -69,13 +108,22 @@
     "requiresCompatibilities": [
         "FARGATE"
     ],
-    "cpu": "1024",
-    "memory": "3072",
-    "runtimePlatform": {
-        "cpuArchitecture": "X86_64",
-        "operatingSystemFamily": "LINUX"
-    },
-    "registeredAt": "2024-02-18T22:07:41.622Z",
-    "registeredBy": "arn:aws:iam::197732814171:root",
-    "tags": []
+    "cpu": "256",
+    "memory": "512",
+    "registeredAt": "2024-01-30T21:01:03.831Z",
+    "registeredBy": "arn:aws:sts::197732814171:assumed-role/v1331release-test-CFNExecutionRole/AWSCloudFormation",
+    "tags": [
+        {
+            "key": "copilot-application",
+            "value": "v1331release"
+        },
+        {
+            "key": "copilot-environment",
+            "value": "test"
+        },
+        {
+            "key": "copilot-service",
+            "value": "testlbws"
+        }
+    ]
 }
