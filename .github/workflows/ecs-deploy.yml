@@ -29,7 +29,7 @@ jobs:
       env:
         ECR_REGISTRY: 197732814171.dkr.ecr.us-east-1.amazonaws.com
         ECR_REPOSITORY: v1331release/testlbws
-        IMAGE_TAG: latest
+        IMAGE_TAG: tag1
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
@@ -40,7 +40,7 @@ jobs:
       with:
         task-definition: task-definition.json
         container-name: testlbws
-        image: 197732814171.dkr.ecr.us-east-1.amazonaws.com/v1331release/testlbws:latest
+        image: 197732814171.dkr.ecr.us-east-1.amazonaws.com/v1331release/testlbws:tag1
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
