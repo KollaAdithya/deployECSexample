@@ -1,1 +1,1 @@
-# GitHub-Action-AWS-Fargate-Pipeline-Practice
+##github action to deploy ecs sevice
