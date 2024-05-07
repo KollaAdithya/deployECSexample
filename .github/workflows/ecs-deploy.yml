@@ -29,7 +29,7 @@ jobs:
       env:
         ECR_REGISTRY: 197732814171.dkr.ecr.us-east-1.amazonaws.com
         ECR_REPOSITORY: nodejs-app
-        IMAGE_TAG: tag1
+        IMAGE_TAG: tag2
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
